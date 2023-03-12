@@ -3,8 +3,8 @@ version: '3'
 services:
   nginx:
     build:
-      context: ./desafioNginx_Node/nginx
-      dockerfile: ./desafioNginx_node/nginx/Dockerfile
+      context: nginx
+      dockerfile: Dockerfile
     container_name: nginx
     networks:
       - node-network
@@ -16,12 +16,12 @@ services:
 
   app:
     build:
-      context: ./desafioNginx_Node/node
+      context: node
     container_name: app
     networks:
       - node-network
     volumes:
-      - ./desafioNginx_Node/node:/usr/src/app
+      - ./node:/usr/src/app
     tty: true  
     ports:
       - "3000:3000"
@@ -35,7 +35,7 @@ services:
     restart: always
     tty: true
     volumes:
-      - ./desafioNginx_Node/mysql:/var/lib/mysql
+      - ./mysql:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=nodedb
       - MYSQL_ROOT_PASSWORD=root

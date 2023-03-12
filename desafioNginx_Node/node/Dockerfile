@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 RUN npm install
 
-COPY ./node .
+COPY . .
 
 
 CMD ["node","index.js"]
