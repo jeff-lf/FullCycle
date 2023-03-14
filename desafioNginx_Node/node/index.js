@@ -12,10 +12,17 @@ const connection = mysql.createConnection(config)
 
 const sql = `INSERT INTO people(name) values('Jefrey')`
 connection.query(sql)
-connection.end()
 
 app.get('/', (req,res) => {
-    res.send('<h1>Full Cycle Rocks!</h1>')
+    const sql2 = `SELECT name FROM people`
+    connection.query(sql2, (err, results) => {
+        if (err) throw err
+        let html = '<h1>Full Cycle Rocks!</h1>'
+        results.forEach(result => {
+            html += `<p>${result.name}</p>`
+        })
+        res.send(html)
+    })
 })
 
 
