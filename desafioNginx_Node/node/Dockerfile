@@ -2,11 +2,9 @@ FROM node:15
 
 WORKDIR /usr/src/app
 
-RUN npm install && \
-    npm install express --no-save &&\
-    npm install mysql
-
 COPY . .
+
+RUN npm install
 
 
 CMD ["node","index.js"]

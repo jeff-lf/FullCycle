@@ -10,16 +10,16 @@ const config = {
 const mysql = require('mysql')
 const connection = mysql.createConnection(config)
 
-const sql = `INSERT INTO people(name) values('Jefrey')`
+const sql = `INSERT INTO pessoas(nome) values('Jefrey')`
 connection.query(sql)
 
 app.get('/', (req,res) => {
-    const sql2 = `SELECT name FROM people`
+    const sql2 = `SELECT nome FROM pessoas`
     connection.query(sql2, (err, results) => {
         if (err) throw err
         let html = '<h1>Full Cycle Rocks!</h1>'
         results.forEach(result => {
-            html += `<p>${result.name}</p>`
+            html += `<p>${result.nome}</p>`
         })
         res.send(html)
     })
